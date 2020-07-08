@@ -144,7 +144,7 @@ def run_script(cell_range):
     # path_to_data = "/Users/stevecharczynski/workspace/data/jay/lec/"
     path_to_data = "/projectnb/ecog-eeg/stevechar/data/jay/lec_pyr"
     # save_dir = "/Users/stevecharczynski/workspace/data/jay/lec/"
-    save_dir = "/projectnb/ecog-eeg/stevechar/ml_runs/jay/lec/"
+    save_dir = "YOUR SAVE PATH"
 
     data_processor = analysis.DataProcessor(
         path_to_data, cell_range)
