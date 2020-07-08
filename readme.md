@@ -1,5 +1,8 @@
 I will outline here the steps required to run and use this code:
 Any instructions in tickmarks (`` ``) should be run in the terminal as written.
+Depending on your Python install and setup commands like ``python3`` or ``pip3`` could be ``python`` or ``pip``. 
+
+Let me know if any of these steps doesn't work.
 
 Prerequisites:
      We need to have the fitting package "maxlikespy" downloaded onto your cluster user and installed. 
@@ -25,3 +28,29 @@ Usage:
     This tells the cluster to submit the job script "run_all_cells.sh" and submit the units in the range 0-1749, using the run script "jay_lec.py"
 
     The run script should create your chosen save directory if it doesn't exist, but creating it by hand isn't a bad idea.
+
+Cleanup:
+    maxlikespy generates a whole mess of output files in order to keep everything as parallel as possible.
+    I have written a script that transforms all output into 3 bigger files and downloads them to your machine.
+    This step is of course optional but I find it very helpful. 
+
+    This script is included in the git repository but it is meant to be run locally on your machine.
+    One simple way to get it off the cluster is to open terminal on your machine and cd to where you want the script to be and input: ``scp YOUR_USERNAME@scc1.bu.edu:/PATH/TO/YOUR/PROJECT/DIR/maxlikespy_cleanup.py .``
+
+    Once you have this locally, we'll need a few packages:
+        ``pip3 install paramiko``
+        ``pip3 install scp``
+
+    Inside the script, you must ensure variables:
+        user, password, run_path, data_path, output_path, local_path
+    are all set according to your setup.
+
+    Once we complete a run on the cluster (needs to be completely finished), we can run this script like:
+    ``python3 maxlikespy_cleanup.py jay/lec_pyr True False`` 
+
+    where the first argument is the project/data, second boolean is whether you ran even odd trials, and last boolean argument is whether you want to download the premade raster/fit plots.
+
+    The main caveat with using this script as written is you must have your save directory, local directory named the same as the directory the data is stored in. In this case the data is in "jay/lec_pyr". 
+
+    This script is obviously not neccesary to use, but if you want to handle the output on your machine it's the easiest way to do so.
+    
